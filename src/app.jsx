@@ -12,3 +12,9 @@ class Message extends React.Component{
 }
 
 React.render(<Message/>, document.getElementById("container"));
+
+// If hot swapping can be done, do it by resolving the current route
+// and render the application again
+if (module.hot) {
+  module.hot.accept();
+}

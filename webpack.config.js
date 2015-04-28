@@ -50,13 +50,13 @@ var config = {
     extensions: ['', '.jsx', '.js', '.sass', '.scss']
   },
   entry: {
-    app: ["./src/app.jsx"],
+    app: ['webpack/hot/dev-server','./src/app.jsx'],
     vendors: ['materialize','materialize.scss','jquery']
   },
   output: {
     path: "./build",
     filename: "app.js",
-    publicPath: '/build/'
+    publicPath: '/'
   },
   plugins: [
         new webpack.ProvidePlugin({
