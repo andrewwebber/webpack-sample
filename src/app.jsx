@@ -1,5 +1,6 @@
-require('./Materialize/sass/materialize.scss');
-require('./Materialize/js/bin/materialize.js');
+require('jquery')
+require('materialize.scss');
+require('materialize');
 import React from 'react';
 
 class Message extends React.Component{
