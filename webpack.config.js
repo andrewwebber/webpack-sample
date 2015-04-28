@@ -49,7 +49,10 @@ var config = {
     },
     extensions: ['', '.jsx', '.js', '.sass', '.scss']
   },
-  entry: "./src/app.jsx",
+  entry: {
+    app: ["./src/app.jsx"],
+    vendors: ['materialize','materialize.scss','jquery']
+  },
   output: {
     path: "./build",
     filename: "app.js",
@@ -61,7 +64,8 @@ var config = {
             jQuery: "jquery",
             "window.jQuery": "jquery",
             "root.jQuery": "jquery"
-        })
+        }),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
     ]
 }
 
