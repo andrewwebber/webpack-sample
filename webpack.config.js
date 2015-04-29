@@ -5,10 +5,19 @@ var webpack = require("webpack");
 var config = {
   module: {
     loaders: [{
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loaders: [
+        'file?hash=sha512&digest=hex&name=[hash].[ext]',
+        'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
+      ]
+    }, {
       test: /\.css$/,
       loader: 'style!css!postcss'
     }, {
       test: /\.jsx$/,
+      loaders: ["babel"]
+    }, {
+      test: /\.js$/,
       loaders: ["babel"]
     }, {
       test: /\.less$/,
@@ -50,8 +59,8 @@ var config = {
     extensions: ['', '.jsx', '.js', '.sass', '.scss']
   },
   entry: {
-    app: ['webpack/hot/dev-server','./src/app.jsx'],
-    vendors: ['materialize','materialize.scss','jquery']
+    app: ['webpack/hot/dev-server', './src/app.jsx'],
+    vendors: ['materialize', 'materialize.scss', 'jquery']
   },
   output: {
     path: "./build",
@@ -59,14 +68,14 @@ var config = {
     publicPath: '/'
   },
   plugins: [
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            "window.jQuery": "jquery",
-            "root.jQuery": "jquery"
-        }),
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
-    ]
-}
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      "root.jQuery": "jquery"
+    }),
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+  ]
+};
 
 module.exports = config;
