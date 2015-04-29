@@ -3,6 +3,25 @@ var autoprefixer = require('autoprefixer-core');
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var plugins = [
+  new webpack.ProvidePlugin({
+    Materialize: "materialize",
+    validate_field: "materialize",
+    $: "jquery",
+    jQuery: "jquery",
+    "window.jQuery": "jquery",
+    "root.jQuery": "jquery"
+  }),
+  new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+];
+
+if(process.env.NODE_ENV === 'production'){
+  plugins.push(new HtmlWebpackPlugin({
+    title: 'App',
+    filename: 'index.html'
+  }));
+}
+
 var config = {
   module: {
     noParse: [bower_dir + '/materialize/dist/js/materialize.js',bower_dir + '/jquery/dist/jquery.js'],
@@ -70,22 +89,7 @@ var config = {
     filename: process.env.NODE_ENV === 'production' ? "app-[hash].js" : "app.js",
     publicPath: '/'
   },
-  plugins: [
-    // new HtmlWebpackPlugin({
-    //   title: 'App',
-    //   filename: 'index.html'
-    // }),
-    new webpack.ProvidePlugin({
-      Materialize: "materialize",
-      validate_field: "materialize",
-      $: "jquery",
-      jQuery: "jquery",
-      "window.jQuery": "jquery",
-      "root.jQuery": "jquery"
-    }),
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
-
-  ]
+  plugins: plugins
 };
 
 module.exports = config;
