@@ -6,7 +6,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "webpack-dev-server --devtool eval --hot --progress --colors --content-base build"
+    "dev": "webpack-dev-server --devtool eval --hot --progress --colors --content-base build",
+    "deploy": "NODE_ENV=production webpack -p --progress --colors"
   },
   "dependencies": {
     "autoprefixer-core": "^5.1.11",
@@ -31,6 +32,7 @@
     "webpack": "^1.8.10"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^1.3.0",
     "image-webpack-loader": "^1.4.0",
     "imagemin": "^3.1.0"
   }

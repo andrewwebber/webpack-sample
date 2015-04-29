@@ -43,7 +43,7 @@ class App extends React.Component{
   }
 }
 
-React.render(<App items={data}/>, document.getElementById("container"));
+React.render(<App items={data}/>, document.body);
 
 // If hot swapping can be done, do it by resolving the current route
 // and render the application again
